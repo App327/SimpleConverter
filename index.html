@@ -101,6 +101,11 @@ button, select {
  outline: 2px solid dodgerblue;
 }
 
+*[dir="rtl"] .from-to .unit {
+ margin-right: 0;
+ margin-left: 5px;
+}
+
 .from-to .value {
  margin-left: 5px;
  display: flex;
@@ -109,11 +114,21 @@ button, select {
  flex-shrink: 0;
 }
 
+*[dir="rtl"] .value {
+ margin-left: 0;
+ margin-right: 5px;
+}
+
 .from-to .value .u {
  margin-left: 2.5px;
  font-size: 0.8rem;
  color: grey;
  user-select: none;
+}
+
+*[dir="rtl"] .from-to .value .u {
+ margin-left: 0;
+ margin-right: 2.5px;
 }
 
 .from-to.from .value input {
@@ -132,6 +147,11 @@ button, select {
 }
 .from-to.from .value input:focus {
  outline: 2px solid dodgerblue;
+}
+
+*[dir="rtl"] .from-to.from .value input {
+ margin-right: 0;
+ margin-left: 2.5px;
 }
 
 .from-to.to .v {
@@ -176,6 +196,11 @@ button, select {
  font-size: 2.0rem;
 }
 
+*[dir="rtl"] .settings-btn {
+ left: 0;
+ right: auto;
+}
+
 #settings {
  position: fixed;
  width: calc(100% - 10px);
@@ -211,15 +236,18 @@ button, select {
   <h1>SimpleConverter</h1>
   <div id="settings" style="display: none;">
    <h2>Настройки</h2>
-   <h3>Загрузка параметров конвертера</h3>
-   <p>Здесь вы можете загрузить JSON-файл с настройками конвертера.</p>
+   <h3>Загрузка пакета данных</h3>
+   <p>Здесь вы можете загрузить JSON-файл с пакетом данных.</p>
    <input type="file" id="settings-custom-conv-data-inp" accept="application/json" />
    <button onclick="loadCustomConvertData()" id="settings-custom-conv-data-btn" disabled>Применить</button>
+   <br />
+   <button onclick="resetConvertData()" id="settings-reset-conv-data-btn" disabled>Вернуть стандартные данные</button>
    <hr noshade color="silver" />
    <h3>О программе</h3>
-   <p>SimpleConverter 1.0</p>
-   <p><i>Дата выпуска версии:</i> 21 дек 2025</p>
-   <p><a href="https://www.github.com/App327">GitHub</a></p>
+   <p>SimpleConverter 1.1</p>
+   <p><i>Дата выпуска версии:</i> 22 янв 2026</p>
+   <p><a href="https://www.github.com/App327/SimpleConverter" class="external">GitHub</a></p>
+   <p>© App327, 2025–2026</p>
   </div>
   <select id="conv-type" onchange="changeConverter()"></select>
   <div id="converter">
@@ -252,7 +280,21 @@ let conv = {
    'м²-см²': '$ * 10000'
   }
  },
+ 3: {
+  'name': 'масса',
+  'units': ['г', 'кг'],
+  'units_full': ['граммы', 'килограммы'],
+  'formulas': {
+   'г-кг': '$ / 1000',
+   'кг-г': '$ * 1000'
+  }
+ }
 };
+
+let defaultConvData = conv;
+
+let curFrom = 0;
+let curTo = 1;
 
 function updateTypes() {
  let opt = '';
@@ -264,11 +306,6 @@ function updateTypes() {
  }
  t.innerHTML = opt;
 }
-
-updateTypes();
-
-let curFrom = 0;
-let curTo = 1;
 
 function changeConverter() {
  curFrom = 0;
@@ -301,32 +338,34 @@ function changeConverter() {
  convert();
 }
 
-changeConverter();
-
-function changeFromUnit() {
+function changeFromUnit(fromSwitch = false) {
  let u = document.getElementById('cc-from-u');
  let ut = document.getElementById('cc-from-ut');
  let u0 = document.getElementById('cc-to-u');
- if (u.value === u0.value) {
+ if (u.value === u0.value && !fromSwitch) {
   u0.value = curFrom;
   changeToUnit();
  }
  ut.innerText = conv[t.value].units[u.value];
  curFrom = Number(u.value);
- convert();
+ if (fromSwitch) {
+  convert();
+ }
 }
 
-function changeToUnit() {
+function changeToUnit(fromSwitch = false) {
  let u = document.getElementById('cc-to-u');
  let ut = document.getElementById('cc-to-ut');
  let u0 = document.getElementById('cc-from-u');
- if (u.value === u0.value) {
+ if (u.value === u0.value && !fromSwitch) {
   u0.value = curTo;
   changeFromUnit();
  }
  ut.innerText = conv[t.value].units[u.value];
  curTo = Number(u.value);
- convert();
+ if (fromSwitch) {
+  convert();
+ }
 }
 
 function convert() {
@@ -371,12 +410,12 @@ function loadCustomConvertData() {
  let inp = document.getElementById('settings-custom-conv-data-inp');
  let f = inp.files[0];
  if (!f) {
-  alert('Нет загруженного файла!');
+  alert('Нет загруженного JSON-файла!');
  }
  let rdr = new FileReader();
  rdr.readAsText(f);
  rdr.onerror = function() {
-  alert('Не удалось прочитать файл.');
+  alert('Не удалось прочитать JSON-файл.');
   return false;
  }
  rdr.onload = function() {
@@ -394,15 +433,27 @@ function loadCustomConvertData() {
   }
   inp.value = null;
   document.getElementById('settings-custom-conv-data-btn').disabled = true;
+  document.getElementById('settings-reset-conv-data-btn').disabled = false;
   conv = j['data'];
   updateTypes();
   changeConverter();
  }
 }
 
+function resetConvertData() {
+ conv = defaultConvData;
+ updateTypes();
+ changeConverter();
+ document.getElementById('settings-reset-conv-data-btn').disabled = true;
+ document.getElementById('settings-custom-conv-data-inp').value = null;
+}
+
 function upperCaseFirst(str) {
  return str[0].toUpperCase() + str.slice(1);
 }
+
+updateTypes();
+changeConverter();
   </script>
  </body>
 </html>
