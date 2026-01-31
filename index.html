@@ -66,6 +66,10 @@ button, select {
  -webkit-tap-highlight-color: transparent;
 }
 
+button[disabled] {
+ cursor: not-allowed;
+}
+
 .from-to {
  display: flex;
  flex-direction: row;
@@ -138,6 +142,7 @@ button, select {
  border: none;
  background: rgb(240, 240, 240);
  border-radius: 5px;
+ caret-color: darkblue;
 }
 .from-to.from .value input:hover {
  background: rgb(230, 230, 230);
@@ -201,20 +206,22 @@ button, select {
  right: auto;
 }
 
-#settings {
+.win {
  position: fixed;
  width: calc(100% - 10px);
  min-height: 100px;
+ max-height: calc(100% - 120px);
  background: white;
  left: 0;
  top: 50%;
  transform: translateY(-50%);
+ overflow: auto;
  box-shadow: 0 0 7px silver;
  padding: 5px;
  user-select: none;
 }
 
-#settings h2 {
+.win h2 {
  font-weight: 600;
  border-bottom: 1px solid silver;
  padding: 0 5px;
@@ -222,32 +229,188 @@ button, select {
  margin: 5px 0 10px 0;
 }
 
-#settings h3, #settings p {
+.win h3, .win p {
  margin: 5px 0;
 }
 
-#settings p {
+.win p {
  font-size: 0.9rem;
+}
+
+.win h2.has-close-btn {
+ display: flex;
+ flex-direction: row;
+ align-items: center;
+ justify-content: space-between;
+ padding-bottom: 5px;
+}
+
+.win h2.has-close-btn .text {
+ margin-right: 5px;
+}
+
+.win h2.has-close-btn .close {
+ margin-left: 5px;
+ height: 30px;
+ width: 30px;
+ border: none;
+ border-radius: 5px;
+ background: rgb(240, 240, 240);
+ padding: 0;
+ font-size: 20px;
+}
+
+*[dir="rtl"] .win h2.has-close-btn .text {
+ margin-left: 5px;
+ margin-right: 0;
+}
+
+*[dir="rtl"] .win h2.has-close-btn .close {
+ margin-left: 0;
+ margin-right: 5px;
+}
+
+.win h2.has-close-btn .close:hover {
+ background: rgb(220, 220, 220);
+}
+
+.win h2.has-close-btn .close:active {
+ background: rgb(190, 190, 190);
+}
+
+.win h2.has-close-btn .close:focus {
+ outline: 2px solid deepskyblue;
+}
+
+#settings .datapack-upload {
+ display: flex;
+ flex-direction: row;
+ align-items: center;
+ padding: 5px;
+ width: calc(100% - 10px);
+ overflow: auto;
+}
+
+#settings .datapack-upload .file-inp {
+ margin-right: 5px;
+}
+
+*[dir="rtl"] #settings .datapack-upload .file-inp {
+ margin-left: 5px;
+ margin-right: 0;
+}
+
+#settings .datapack-upload .file-inp::file-selector-button {
+ border: 1px solid silver;
+ border-radius: 5px;
+ padding: 5px 10px;
+ background: rgb(250, 250, 250);
+}
+
+#settings .datapack-upload .file-inp::file-selector-button:hover {
+ background: rgb(230, 230, 230);
+}
+
+#settings .datapack-upload .file-inp::file-selector-button:active {
+ background: rgb(200, 200, 200);
+ border: 1px solid grey;
+}
+
+#settings .datapack-upload .file-inp::file-selector-button:focus {
+ outline: 1px dashed royalblue;
+ outline-offset: -4px;
+}
+
+#settings .datapack-upload .apply-btn {
+ padding: 5px 10px;
+ background: dodgerblue;
+ color: white;
+ border: none;
+ border-radius: 5px;
+ margin-left: 5px;
+}
+
+#settings .datapack-upload .apply-btn:hover {
+ background: royalblue;
+}
+
+#settings .datapack-upload .apply-btn:active {
+ background: rgb(35, 75, 195);
+}
+
+*[dir="rtl"] #settings .datapack-upload .apply-btn {
+ margin-left: 0;
+ margin-right: 5px;
+}
+
+#settings .datapack-upload .apply-btn:focus {
+ outline: 2px solid skyblue;
+}
+
+#settings .datapack-upload .apply-btn[disabled] {
+ background: silver;
+}
+
+#settings .datapack-reset-btn {
+ margin: 5px;
+ padding: 2.5px 7.5px;
+ border-radius: 5px;
+ border: 1px solid silver;
+ background: white;
+ color: darkblue;
+}
+
+#settings .datapack-reset-btn:hover {
+ background: rgb(230, 230, 230);
+}
+
+#settings .datapack-reset-btn:active {
+ background: rgb(200, 200, 200);
+ border: 1px solid grey;
+}
+
+#settings .datapack-reset-btn:focus {
+ outline: 2px solid skyblue;
+}
+
+#settings .datapack-reset-btn[disabled] {
+ background: rgb(240, 240, 240);
+ color: grey;
+ border: 1px solid lightgrey;
 }
   </style>
  </head>
  <body>
   <button class="settings-btn" id="settings-btn" onclick="showSettings()"></button>
   <h1>SimpleConverter</h1>
-  <div id="settings" style="display: none;">
+  <div id="settings" class="win" style="display: none;">
    <h2>Настройки</h2>
    <h3>Загрузка пакета данных</h3>
    <p>Здесь вы можете загрузить JSON-файл с пакетом данных.</p>
-   <input type="file" id="settings-custom-conv-data-inp" accept="application/json" />
-   <button onclick="loadCustomConvertData()" id="settings-custom-conv-data-btn" disabled>Применить</button>
-   <br />
-   <button onclick="resetConvertData()" id="settings-reset-conv-data-btn" disabled>Вернуть стандартные данные</button>
+   <div class="datapack-upload"><input type="file" id="settings-custom-conv-data-inp" accept="application/json" class="file-inp" /><button onclick="loadCustomConvertData()" id="settings-custom-conv-data-btn" class="apply-btn" disabled>Применить</button></div>
+   <button onclick="resetConvertData()" id="settings-reset-conv-data-btn" class="datapack-reset-btn" disabled>Вернуть стандартные данные</button>
    <hr noshade color="silver" />
    <h3>О программе</h3>
-   <p>SimpleConverter 1.1</p>
-   <p><i>Дата выпуска версии:</i> 22 янв 2026</p>
+   <p>SimpleConverter 1.2 <a href="javascript:showVersionChanges()">[список изменений]</a></p>
+   <p><i>Дата выпуска версии:</i> 31 янв 2026</p>
    <p><a href="https://www.github.com/App327/SimpleConverter" class="external">GitHub</a></p>
    <p>© App327, 2025–2026</p>
+  </div>
+  <div id="changes" class="win" style="display: none;">
+   <h2 class="has-close-btn"><span class="text">Список изменений: v1.2</span> <button class="close" onclick="closeVersionChanges()">×</button></h2>
+   <p>Что нового в SimpleConverter версии 1.2 (изменения перечислены в порядке их реализации):</p>
+   <ul>
+    <li>теперь у окон будут добавляться полосы прокрутки, если они слишком большие и не влезают в окно браузера;</li>
+    <li>добавлено это окно (со списком изменений в версии);</li>
+    <li>в конвертер «Площадь» добавлена новая единица измерения — <i>квадратные километры (км²)</i></i>;</li>
+    <li>исправлен баг, из-за которого не происходит переконвертация при изменении целевой/исходной единицы измерения;</li>
+    <li>исправлен баг, из-за которого при соответствии исходной и целевой единиц измерения они не менялись местами;</li>
+    <li>теперь у отключённых кнопок будет показываться курсор в виде значка недоступности;</li>
+    <li>у поля ввода исходного значения в конвертере текстовый курсор теперь тёмно-синего цвета;</li>
+    <li>добавлены стили у кнопок в разделе «Загрузка пакета данных» в настройках;</li>
+    <li>теперь для JSON-пакетов данных необходимо наличие поля <code>"format": 1</code>;</li>
+    <li>другие незначительные технические изменения.</li>
+   </ul>
   </div>
   <select id="conv-type" onchange="changeConverter()"></select>
   <div id="converter">
@@ -273,11 +436,15 @@ let conv = {
  },
  2: {
   'name': 'площадь',
-  'units': ['см²', 'м²'],
-  'units_full': ['квадратные сантиметры', 'квадратные метры'],
+  'units': ['см²', 'м²', 'км²'],
+  'units_full': ['квадратные сантиметры', 'квадратные метры', 'квадратные километры'],
   'formulas': {
    'см²-м²': '$ / 10000',
-   'м²-см²': '$ * 10000'
+   'м²-см²': '$ * 10000',
+   'см²-км²': '$ / 10000000000',
+   'м²-км²': '$ / 1000000',
+   'км²-м²': '$ * 1000000',
+   'км²-см²': '$ * 10000000000'
   }
  },
  3: {
@@ -316,7 +483,7 @@ function changeConverter() {
   return false;
  }
  let html = '<h3>Конвертер: ' + ct.name + '</h3>';
- html += '<div class="from-to from"><select id="cc-from-u" onclick="changeFromUnit()" class="unit">';
+ html += '<div class="from-to from"><select id="cc-from-u" onclick="changeFromUnit(true)" class="unit">';
  for (let i = 0; i < ct.units_full.length; i++) {
   let s = '';
   if (i === curFrom) {
@@ -325,7 +492,7 @@ function changeConverter() {
   html += '<option value="' + i + '"' + s + '>' + upperCaseFirst(ct.units_full[i]) + ' (' + ct.units[i] + ')</option>';
  }
  html += '</select> <div class="value"><input type="number" id="cc-from-v" oninput="convert()" onchange="convert()" placeholder="123" value="1" /> <p class="u" id="cc-from-ut">' + ct.units[curFrom] + '</p></div></div>';
- html += '<div class="from-to to"><select id="cc-to-u" onclick="changeToUnit()" class="unit">';
+ html += '<div class="from-to to"><select id="cc-to-u" onclick="changeToUnit(true)" class="unit">';
  for (let i = 0; i < ct.units_full.length; i++) {
   let s = '';
   if (i === curTo) {
@@ -342,7 +509,7 @@ function changeFromUnit(fromSwitch = false) {
  let u = document.getElementById('cc-from-u');
  let ut = document.getElementById('cc-from-ut');
  let u0 = document.getElementById('cc-to-u');
- if (u.value === u0.value && !fromSwitch) {
+ if (u.value === u0.value) {
   u0.value = curFrom;
   changeToUnit();
  }
@@ -357,7 +524,7 @@ function changeToUnit(fromSwitch = false) {
  let u = document.getElementById('cc-to-u');
  let ut = document.getElementById('cc-to-ut');
  let u0 = document.getElementById('cc-from-u');
- if (u.value === u0.value && !fromSwitch) {
+ if (u.value === u0.value) {
   u0.value = curTo;
   changeFromUnit();
  }
@@ -397,6 +564,14 @@ function closeSettings() {
  btn.innerText = '';
 }
 
+function showVersionChanges() {
+ document.getElementById('changes').style.display = 'block';
+}
+
+function closeVersionChanges() {
+ document.getElementById('changes').style.display = 'none';
+}
+
 document.getElementById('settings-custom-conv-data-inp').onchange = function() {
  let btn = document.getElementById('settings-custom-conv-data-btn');
  if (this.files[0]) {
@@ -410,7 +585,8 @@ function loadCustomConvertData() {
  let inp = document.getElementById('settings-custom-conv-data-inp');
  let f = inp.files[0];
  if (!f) {
-  alert('Нет загруженного JSON-файла!');
+  alert('Загруженный JSON-файл отсутствует!');
+  return false;
  }
  let rdr = new FileReader();
  rdr.readAsText(f);
@@ -431,10 +607,16 @@ function loadCustomConvertData() {
    alert('В JSON отсутствует поле «data».');
    return false;
   }
+  let d = j.data;
+  if (j.format === 1) {
+   conv = j.data;
+  } else {
+   alert('Неподдерживаемый формат JSON-пакета: ' + j.format);
+   return false;
+  }
   inp.value = null;
   document.getElementById('settings-custom-conv-data-btn').disabled = true;
   document.getElementById('settings-reset-conv-data-btn').disabled = false;
-  conv = j['data'];
   updateTypes();
   changeConverter();
  }
