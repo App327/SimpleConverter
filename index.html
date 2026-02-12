@@ -10,8 +10,14 @@
 }
 
 body {
+ background: white;
  color: rgb(30, 30, 30);
  font-family: sans-serif;
+}
+
+body.theme-dark {
+ background: rgb(30, 30, 30);
+ color: white;
 }
 
 a {
@@ -27,9 +33,21 @@ a:active {
  color: royalblue;
 }
 
+body.theme-dark a {
+ color: deepskyblue;
+}
+
+body.theme-dark a:active {
+ color: dodgerblue;
+}
+
 h1 {
  color: darkblue;
  user-select: none;
+}
+
+body.theme-dark h1 {
+ color: skyblue;
 }
 
 #conv-type {
@@ -39,7 +57,7 @@ h1 {
  background: rgb(240, 240, 240);
 }
 #conv-type:hover {
- background: rgb(220, 220, 220);
+ bafckground: rgb(220, 220, 220);
 }
 #conv-type:active {
  background: rgb(180, 180, 180);
@@ -49,11 +67,34 @@ h1 {
  outline-offset: -2px;
 }
 
+body.theme-dark #conv-type {
+ border: 2px solid rgb(85, 85, 85);
+ background: rgb(45, 45, 45);
+ color: white;
+}
+
+body.theme-dark #conv-type:hover {
+ background: rgb(65, 65, 65);
+}
+
+body.theme-dark #conv-type:active {
+ background: rgb(10, 10, 10);
+}
+
+body.theme-dark #conv-type:focus {
+ outline: 1px dashed deepskyblue;
+}
+
 code {
  padding: 2px;
  border-radius: 2px;
  background: rgb(240, 240, 240);
  border: 1px solid rgb(220, 220, 220);
+}
+
+body.theme-dark code {
+ background: rgb(50, 50, 50);
+ border: 1px solid rgb(100, 100, 100);
 }
 
 button, select, textarea, input {
@@ -81,6 +122,11 @@ button[disabled] {
  overflow: auto;
 }
 
+body.theme-dark .from-to {
+ border-top: 1px solid rgb(70, 70, 70);
+ border-bottom: 1px solid rgb(70, 70, 70);
+}
+
 .from-to p {
  margin: 0;
 }
@@ -103,6 +149,22 @@ button[disabled] {
 }
 .from-to .unit:focus {
  outline: 2px solid dodgerblue;
+}
+
+body.theme-dark .from-to .unit {
+ border: 1px solid rgb(70, 70, 70);
+ background: rgb(30, 30, 30);
+ color: white;
+}
+body.theme-dark .from-to .unit:hover {
+ background: rgb(90, 90, 90);
+ outline: 1px solid rgb(70, 70, 70);
+}
+body.theme-dark .from-to .unit:active {
+ background: rgb(10, 10, 10);
+}
+body.theme-dark .from-to .unit:focus {
+ outline: 2px solid deepskyblue;
 }
 
 *[dir="rtl"] .from-to .unit {
@@ -130,6 +192,10 @@ button[disabled] {
  user-select: none;
 }
 
+body.theme-dark .from-to .value .u {
+ color: rgb(200, 200, 200);
+}
+
 *[dir="rtl"] .from-to .value .u {
  margin-left: 0;
  margin-right: 2.5px;
@@ -152,6 +218,21 @@ button[disabled] {
 }
 .from-to.from .value input:focus {
  outline: 2px solid dodgerblue;
+}
+
+body.theme-dark .from-to.from .value input {
+ background: rgb(50, 50, 50);
+ color: white;
+ caret-color: lightblue;
+}
+body.theme-dark .from-to.from .value input:hover {
+ background: rgb(70, 70, 70);
+}
+body.theme-dark .from-to.from .value input:active {
+ background: rgb(20, 20, 20);
+}
+body.theme-dark .from-to.from .value input:focus {
+ outline: 2px solid deepskyblue;
 }
 
 *[dir="rtl"] .from-to.from .value input {
@@ -196,6 +277,16 @@ button[disabled] {
  outline-offset: -2px;
 }
 
+body.theme-dark .settings-btn {
+ background-color: rgb(150, 150, 150);
+}
+body.theme-dark .settings-btn:hover {
+ background-color: rgb(170, 170, 170);
+}
+body.theme-dark .settings-btn:active {
+ background-color: rgb(120, 120, 120);
+}
+
 .settings-btn.opened {
  background-image: none;
  font-size: 2.0rem;
@@ -219,6 +310,11 @@ button[disabled] {
  box-shadow: 0 0 7px silver;
  padding: 5px;
  user-select: none;
+}
+
+body.theme-dark .win {
+ background: rgb(40, 40, 40);
+ box-shadow: 0 0 7px black;
 }
 
 .win h2 {
@@ -260,6 +356,11 @@ button[disabled] {
  font-size: 20px;
 }
 
+body.theme-dark .win h2.has-close-btn .close {
+ background: rgb(60, 60, 60);
+ color: white;
+}
+
 *[dir="rtl"] .win h2.has-close-btn .text {
  margin-left: 5px;
  margin-right: 0;
@@ -273,13 +374,18 @@ button[disabled] {
 .win h2.has-close-btn .close:hover {
  background: rgb(220, 220, 220);
 }
-
 .win h2.has-close-btn .close:active {
  background: rgb(190, 190, 190);
 }
-
 .win h2.has-close-btn .close:focus {
  outline: 2px solid deepskyblue;
+}
+
+body.theme-dark .win h2.has-close-btn .close:hover {
+ background: rgb(80, 80, 80);
+}
+body.theme-dark .win h2.has-close-btn .close:active {
+ background: rgb(30, 30, 30);
 }
 
 #settings .datapack-upload {
@@ -378,9 +484,102 @@ button[disabled] {
  color: grey;
  border: 1px solid lightgrey;
 }
+
+@media (prefers-color-scheme: dark) {
+ body.theme-followsys {
+  background: rgb(30, 30, 30);
+  color: white;
+ }
+ body.theme-followsys a {
+  color: deepskyblue;
+ }
+ body.theme-followsys a:active {
+  color: dodgerblue;
+ }
+ body.theme-followsys h1 {
+  color: skyblue;
+ }
+ body.theme-followsys #conv-type {
+  border: 2px solid rgb(85, 85, 85);
+  background: rgb(45, 45, 45);
+  color: white;
+ }
+ body.theme-followsys #conv-type:hover {
+  background: rgb(65, 65, 65);
+ }
+ body.theme-followsys #conv-type:active {
+  background: rgb(10, 10, 10);
+ }
+ body.theme-followsys #conv-type:focus {
+  outline: 1px dashed deepskyblue;
+ } 
+ body.theme-followsys code {
+  background: rgb(50, 50, 50);
+  border: 1px solid rgb(100, 100, 100);
+ }
+ body.theme-followsys .from-to {
+  border-top: 1px solid rgb(70, 70, 70);
+  border-bottom: 1px solid rgb(70, 70, 70);
+ }
+ body.theme-followsys .from-to .unit {
+  border: 1px solid rgb(70, 70, 70);
+  background: rgb(30, 30, 30);
+  color: white;
+ }
+ body.theme-followsys .from-to .unit:hover {
+  background: rgb(90, 90, 90);
+  outline: 1px solid rgb(70, 70, 70);
+ }
+ body.theme-followsys .from-to .unit:active {
+  background: rgb(10, 10, 10);
+ }
+ body.theme-followsys .from-to .unit:focus {
+  outline: 2px solid deepskyblue;
+ }
+ body.theme-followsys .from-to .value .u {
+  color: rgb(200, 200, 200);
+ }
+ body.theme-followsys .from-to.from .value input {
+  background: rgb(50, 50, 50);
+  color: white;
+  caret-color: lightblue;
+ }
+ body.theme-followsys .from-to.from .value input:hover {
+  background: rgb(70, 70, 70);
+ }
+ body.theme-followsys .from-to.from .value input:active {
+  background: rgb(20, 20, 20);
+ }
+ body.theme-followsys .from-to.from .value input:focus {
+  outline: 2px solid deepskyblue;
+ }
+ body.theme-followsys .settings-btn {
+  background-color: rgb(150, 150, 150);
+ }
+ body.theme-followsys .settings-btn:hover {
+  background-color: rgb(170, 170, 170);
+ }
+ body.theme-followsys .settings-btn:active {
+  background-color: rgb(120, 120, 120);
+ }
+ body.theme-followsys .win {
+  background: rgb(40, 40, 40);
+  box-shadow: 0 0 7px black;
+ }
+ body.theme-followsys .win h2.has-close-btn .close {
+  background: rgb(60, 60, 60);
+  color: white;
+ }
+ body.theme-followsys .win h2.has-close-btn .close:hover {
+  background: rgb(80, 80, 80);
+ }
+ body.theme-followsys .win h2.has-close-btn .close:active {
+  background: rgb(30, 30, 30);
+ }
+}
   </style>
  </head>
- <body>
+ <body class="theme-followsys">
   <button class="settings-btn" id="settings-btn" onclick="showSettings()"></button>
   <h1>SimpleConverter</h1>
   <div id="settings" class="win" style="display: none;">
@@ -390,26 +589,24 @@ button[disabled] {
    <div class="datapack-upload"><input type="file" id="settings-custom-conv-data-inp" accept="application/json" class="file-inp" /><button onclick="loadCustomConvertData()" id="settings-custom-conv-data-btn" class="apply-btn" disabled>Применить</button></div>
    <button onclick="resetConvertData()" id="settings-reset-conv-data-btn" class="datapack-reset-btn" disabled>Вернуть стандартные данные</button>
    <hr noshade color="silver" />
+   <h3>Тема</h3>
+   <label><input type="radio" onchange="changeTheme()" name="settings-theme" checked /> Как в системе</label><br />
+   <label><input type="radio" onchange="changeTheme()" name="settings-theme" /> Светлая</label><br />
+   <label><input type="radio" onchange="changeTheme()" name="settings-theme" /> Тёмная</label>
+   <hr noshade color="silver" />
    <h3>О программе</h3>
-   <p>SimpleConverter 1.2 <a href="javascript:showVersionChanges()">[список изменений]</a></p>
-   <p><i>Дата выпуска версии:</i> 31 янв 2026</p>
+   <p>SimpleConverter 1.3 <a href="javascript:showVersionChanges()">[список изменений]</a></p>
+   <p><i>Дата выпуска версии:</i> 12 фев 2026</p>
    <p><a href="https://www.github.com/App327/SimpleConverter" class="external">GitHub</a></p>
    <p>© App327, 2025–2026</p>
   </div>
   <div id="changes" class="win" style="display: none;">
-   <h2 class="has-close-btn"><span class="text">Список изменений: v1.2</span> <button class="close" onclick="closeVersionChanges()">×</button></h2>
-   <p>Что нового в SimpleConverter версии 1.2 (изменения перечислены в порядке их реализации):</p>
+   <h2 class="has-close-btn"><span class="text">Список изменений: v1.3</span> <button class="close" onclick="closeVersionChanges()">×</button></h2>
+   <p>Что нового в SimpleConverter версии <code>1.3</code> (изменения перечислены в порядке их реализации):</p>
    <ul>
-    <li>теперь у окон будут добавляться полосы прокрутки, если они слишком большие и не влезают в окно браузера;</li>
-    <li>добавлено это окно (со списком изменений в версии);</li>
-    <li>в конвертер «Площадь» добавлена новая единица измерения — <i>квадратные километры (км²)</i></i>;</li>
-    <li>исправлен баг, из-за которого не происходит переконвертация при изменении целевой/исходной единицы измерения;</li>
-    <li>исправлен баг, из-за которого при соответствии исходной и целевой единиц измерения они не менялись местами;</li>
-    <li>теперь у отключённых кнопок будет показываться курсор в виде значка недоступности;</li>
-    <li>у поля ввода исходного значения в конвертере текстовый курсор теперь тёмно-синего цвета;</li>
-    <li>добавлены стили у кнопок в разделе «Загрузка пакета данных» в настройках;</li>
-    <li>теперь для JSON-пакетов данных необходимо наличие поля <code>"format": 1</code>;</li>
-    <li>другие незначительные технические изменения.</li>
+    <li>Добавлена тёмная тема. Сменить тему можно в настройках.</li>
+    <li>В конвертер «Длина» добавлена новая единица измерения — <i>дециметры</i> (<i>дм</i>).</li>
+    <li>Другие незначительные технические изменения.</li>
    </ul>
   </div>
   <select id="conv-type" onchange="changeConverter()"></select>
@@ -423,15 +620,21 @@ let c = document.getElementById('converter');
 let conv = {
  1: {
   'name': 'длина',
-  'units': ['см', 'м', 'км'],
-  'units_full': ['сантиметры', 'метры', 'километры'],
+  'units': ['см', 'дм', 'м', 'км'],
+  'units_full': ['сантиметры', 'дециметры', 'метры', 'километры'],
   'formulas': {
+   'дм-см': '$ * 10',
+   'дм-м': '$ / 10',
+   'дм-км': '$ / 10_000',
+   'см-дм': '$ / 10',
    'см-м': '$ / 100',
+   'см-км': '$ / 100_000',
+   'м-дм': '$ * 10',
    'м-см': '$ * 100',
-   'см-км': '$ / 100000',
-   'м-км': '$ / 1000',
-   'км-м': '$ * 1000',
-   'км-см': '$ * 100000'
+   'м-км': '$ / 1_000',
+   'км-дм': '$ * 10_000',
+   'км-м': '$ * 1_000',
+   'км-см': '$ * 100_000'
   }
  },
  2: {
@@ -439,12 +642,12 @@ let conv = {
   'units': ['см²', 'м²', 'км²'],
   'units_full': ['квадратные сантиметры', 'квадратные метры', 'квадратные километры'],
   'formulas': {
-   'см²-м²': '$ / 10000',
-   'м²-см²': '$ * 10000',
-   'см²-км²': '$ / 10000000000',
-   'м²-км²': '$ / 1000000',
-   'км²-м²': '$ * 1000000',
-   'км²-см²': '$ * 10000000000'
+   'см²-м²': '$ / 10_000',
+   'м²-см²': '$ * 10_000',
+   'см²-км²': '$ / 10_000_000_000',
+   'м²-км²': '$ / 1_000_000',
+   'км²-м²': '$ * 1_000_000',
+   'км²-см²': '$ * 10_000_000_000'
   }
  },
  3: {
@@ -452,8 +655,8 @@ let conv = {
   'units': ['г', 'кг'],
   'units_full': ['граммы', 'килограммы'],
   'formulas': {
-   'г-кг': '$ / 1000',
-   'кг-г': '$ * 1000'
+   'г-кг': '$ / 1_000',
+   'кг-г': '$ * 1_000'
   }
  }
 };
@@ -479,7 +682,7 @@ function changeConverter() {
  curTo = 1;
  let ct = conv[t.value];
  if (!ct) {
-  c.innerHTML = '<p>Конвертер недоступен. <code>E1</code></p>';
+  c.innerHTML = '<p>Конвертер недоступен. Код ошибки: <code>E1</code></p>';
   return false;
  }
  let html = '<h3>Конвертер: ' + ct.name + '</h3>';
@@ -632,6 +835,20 @@ function resetConvertData() {
 
 function upperCaseFirst(str) {
  return str[0].toUpperCase() + str.slice(1);
+}
+
+function changeTheme() {
+ let th = document.getElementsByName('settings-theme');
+ let tf = th[0];
+ let tl = th[1];
+ let td = th[2];
+ if (tl.checked) {
+  document.body.className = '';
+ } else if (td.checked) {
+  document.body.className = 'theme-dark';
+ } else {
+  document.body.className = 'theme-followsys';
+ }
 }
 
 updateTypes();
