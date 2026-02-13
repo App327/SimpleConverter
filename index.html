@@ -7,6 +7,7 @@
   <style type="text/css">
 :root {
  --settings-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAtOTYwIDk2MCA5NjAiIHdpZHRoPSIyNHB4IiBmaWxsPSIjMDAwMDAwIj48cGF0aCBkPSJtMzcwLTgwLTE2LTEyOHEtMTMtNS0yNC41LTEyVDMwNy0yMzVsLTExOSA1MEw3OC0zNzVsMTAzLTc4cS0xLTctMS0xMy41di0yN3EwLTYuNSAxLTEzLjVMNzgtNTg1bDExMC0xOTAgMTE5IDUwcTExLTggMjMtMTV0MjQtMTJsMTYtMTI4aDIyMGwxNiAxMjhxMTMgNSAyNC41IDEydDIyLjUgMTVsMTE5LTUwIDExMCAxOTAtMTAzIDc4cTEgNyAxIDEzLjV2MjdxMCA2LjUtMiAxMy41bDEwMyA3OC0xMTAgMTkwLTExOC01MHEtMTEgOC0yMyAxNXQtMjQgMTJMNTkwLTgwSDM3MFptMTEyLTI2MHE1OCAwIDk5LTQxdDQxLTk5cTAtNTgtNDEtOTl0LTk5LTQxcS01OSAwLTk5LjUgNDFUMzQyLTQ4MHEwIDU4IDQwLjUgOTl0OTkuNSA0MVoiLz48L3N2Zz4=');
+ --openinnew-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAtOTYwIDk2MCA5NjAiIHdpZHRoPSIyNHB4IiBmaWxsPSIjMUU5MEZGIj48cGF0aCBkPSJNMjAwLTEyMHEtMzMgMC01Ni41LTIzLjVUMTIwLTIwMHYtNTYwcTAtMzMgMjMuNS01Ni41VDIwMC04NDBoMjgwdjgwSDIwMHY1NjBoNTYwdi0yODBoODB2MjgwcTAgMzMtMjMuNSA1Ni41VDc2MC0xMjBIMjAwWm0xODgtMjEyLTU2LTU2IDM3Mi0zNzJINTYwdi04MGgyODB2MjgwaC04MHYtMTQ0TDM4OC0zMzJaIi8+PC9zdmc+');
 }
 
 body {
@@ -31,6 +32,14 @@ a:hover {
 
 a:active {
  color: royalblue;
+}
+
+a.external {
+ padding-right: 17.5px;
+ background-image: var(--openinnew-icon);
+ background-repeat: no-repeat;
+ background-position: right center;
+ background-size: 15px;
 }
 
 body.theme-dark a {
@@ -303,13 +312,20 @@ body.theme-dark .settings-btn:active {
  min-height: 100px;
  max-height: calc(100% - 120px);
  background: white;
- left: 0;
+ left: 50%;
  top: 50%;
- transform: translateY(-50%);
+ transform: translate(-50%, -50%) scale(1.0);
+ opacity: 0;
  overflow: auto;
  box-shadow: 0 0 7px silver;
  padding: 5px;
  user-select: none;
+ animation: showWin 250ms forwards;
+}
+
+@keyframes showWin {
+ from { opacity: 0; transform: translate(-50%, -50%) scale(1.2); }
+ to { opacity: 1; transform: translate(-50%, -50%) scale(1.0); }
 }
 
 body.theme-dark .win {
@@ -485,6 +501,19 @@ body.theme-dark .win h2.has-close-btn .close:active {
  border: 1px solid lightgrey;
 }
 
+.nojs {
+ background: rgb(255, 240, 200);
+ position: fixed;
+ top: 50%;
+ left: 50%;
+ padding: 5px;
+ width: calc(100% - 10px);
+ transform: translate(-50%, -50%);
+ box-shadow: 0 0 10px silver;
+ max-height: calc(100% - 20px);
+ overflow: auto;
+}
+
 @media (prefers-color-scheme: dark) {
  body.theme-followsys {
   background: rgb(30, 30, 30);
@@ -576,10 +605,22 @@ body.theme-dark .win h2.has-close-btn .close:active {
  body.theme-followsys .win h2.has-close-btn .close:active {
   background: rgb(30, 30, 30);
  }
+ body.theme-followsys .nojs {
+  background: rgb(65, 50, 30);
+  box-shadow: 0 0 10px black;
+ }
+}
+
+@media (min-width: 400px) {
+ .win {
+  width: 340px;
+  border-radius: 5px;
+ }
 }
   </style>
  </head>
  <body class="theme-followsys">
+  <noscript><div class="nojs"><p>В этом браузере отключена поддержка JavaScript. JS необходим для работы SimpleConverter. Пожалуйста, включите поддержку JavaScript в этом браузере или воспользуйтесь другим браузером/ОС.</p></div></noscript>
   <button class="settings-btn" id="settings-btn" onclick="showSettings()"></button>
   <h1>SimpleConverter</h1>
   <div id="settings" class="win" style="display: none;">
@@ -595,18 +636,22 @@ body.theme-dark .win h2.has-close-btn .close:active {
    <label><input type="radio" onchange="changeTheme()" name="settings-theme" /> Тёмная</label>
    <hr noshade color="silver" />
    <h3>О программе</h3>
-   <p>SimpleConverter 1.3 <a href="javascript:showVersionChanges()">[список изменений]</a></p>
-   <p><i>Дата выпуска версии:</i> 12 фев 2026</p>
-   <p><a href="https://www.github.com/App327/SimpleConverter" class="external">GitHub</a></p>
+   <p>SimpleConverter 1.4 <a href="javascript:showVersionChanges()">[список изменений]</a></p>
+   <p><i>Дата выпуска версии:</i> <span style="color: red;">пятница, 13-е</span> фев 2026 (UTC+03:00)</p>
+   <p><a href="https://www.github.com/App327/SimpleConverter" target="_blank" class="external">GitHub</a></p>
    <p>© App327, 2025–2026</p>
   </div>
   <div id="changes" class="win" style="display: none;">
-   <h2 class="has-close-btn"><span class="text">Список изменений: v1.3</span> <button class="close" onclick="closeVersionChanges()">×</button></h2>
-   <p>Что нового в SimpleConverter версии <code>1.3</code> (изменения перечислены в порядке их реализации):</p>
+   <h2 class="has-close-btn"><span class="text">Список изменений: v1.4</span> <button class="close" onclick="closeVersionChanges()">×</button></h2>
+   <p>Что нового в SimpleConverter версии <code>1.4</code> (изменения перечислены в порядке их реализации):</p>
    <ul>
-    <li>Добавлена тёмная тема. Сменить тему можно в настройках.</li>
-    <li>В конвертер «Длина» добавлена новая единица измерения — <i>дециметры</i> (<i>дм</i>).</li>
-    <li>Другие незначительные технические изменения.</li>
+    <li>Теперь ссылки на внешние сайты будут открываться в новой вкладке. Открываемые в новой вкладке ссылки имеют специальное обозначение в виде стрелки, выходящей из квадратика.</li>
+    <li>Теперь при ширине окна браузера ≥400 пкс, окна интерфейса SimpleConverter отображаются не во всю ширину, а в ширину 350 пкс.</li>
+    <li>Добавлены анимации открытия окон интерфейса SimpleConverter.</li>
+    <li>Добавлено предупреждение об отключённом JavaScript.</li>
+    <li>Теперь пустое или нечисловое значение в поле ввода исходного значения будет расцениваться как <b>0</b>.</li>
+    <li>Пополнение конвертера «Масса»: добавлена новая единица измерения — <i>миллиграммы</i> (<i>мг</i>).</li>
+    <li>Небольшие незначительные технические изменения.</li>
    </ul>
   </div>
   <select id="conv-type" onchange="changeConverter()"></select>
@@ -652,10 +697,14 @@ let conv = {
  },
  3: {
   'name': 'масса',
-  'units': ['г', 'кг'],
-  'units_full': ['граммы', 'килограммы'],
+  'units': ['мг', 'г', 'кг'],
+  'units_full': ['миллиграммы', 'граммы', 'килограммы'],
   'formulas': {
+   'мг-г': '$ / 1_000',
+   'мг-кг': '$ / 1_000_000',
+   'г-мг': '$ * 1_000',
    'г-кг': '$ / 1_000',
+   'кг-мг': '$ * 1_000_000',
    'кг-г': '$ * 1_000'
   }
  }
@@ -745,8 +794,12 @@ function convert() {
  let tou = document.getElementById('cc-to-u');
  let f = conv[t.value].units[fromu.value];
  let tt = conv[t.value].units[tou.value];
+ let v = from.value;
+ if (v === '' || isNaN(v)) {
+  v = 0;
+ }
  let formula = conv[t.value].formulas[f + '-' + tt];
- let task = formula.replaceAll('$', from.value);
+ let task = formula.replaceAll('$', v);
  let result = eval(task);
  to.innerText = result;
 }
