@@ -253,6 +253,44 @@ body.theme-dark .from-to.from .value input:focus {
  font-weight: 700;
 }
 
+.formula {
+ display: flex;
+ flex-direction: row;
+ align-items: center;
+ margin: 10px 0;
+ font-size: 0.9rem;
+ overflow: auto;
+}
+
+.formula .name {
+ margin: 0;
+ margin-right: 5px;
+ padding: 5px;
+ border-radius: 5px;
+ background: skyblue;
+ user-select: none;
+ font-weight: 600;
+}
+
+.formula .text {
+ margin: 0;
+ margin-left: 5px;
+}
+
+body.theme-dark .formula .name {
+ background: royalblue;
+}
+
+*[dir="rtl"] .formula .name {
+ margin-right: 0;
+ margin-left: 5px;
+}
+
+*[dir="rtl"] .formula .text {
+ margin-left: 0;
+ margin-right: 5px;
+}
+
 .settings-btn {
  border: none;
  height: 50px;
@@ -428,19 +466,32 @@ body.theme-dark .win h2.has-close-btn .close:active {
  padding: 5px 10px;
  background: rgb(250, 250, 250);
 }
-
 #settings .datapack-upload .file-inp::file-selector-button:hover {
  background: rgb(230, 230, 230);
 }
-
 #settings .datapack-upload .file-inp::file-selector-button:active {
  background: rgb(200, 200, 200);
  border: 1px solid grey;
 }
-
 #settings .datapack-upload .file-inp::file-selector-button:focus {
  outline: 1px dashed royalblue;
  outline-offset: -4px;
+}
+
+body.theme-dark #settings .datapack-upload .file-inp::file-selector-button {
+ border: 1px solid rgb(100, 100, 100);
+ background: rgb(50, 50, 50);
+ color: white;
+}
+body.theme-dark #settings .datapack-upload .file-inp::file-selector-button:hover {
+ background: rgb(70, 70, 70);
+}
+body.theme-dark #settings .datapack-upload .file-inp::file-selector-button:active {
+ background: rgb(40, 40, 40);
+ border: 1px solid silver;
+}
+body.theme-dark #settings .datapack-upload .file-inp::file-selector-button:focus {
+ outline: 1px dashed deepskyblue;
 }
 
 #settings .datapack-upload .apply-btn {
@@ -451,26 +502,37 @@ body.theme-dark .win h2.has-close-btn .close:active {
  border-radius: 5px;
  margin-left: 5px;
 }
-
 #settings .datapack-upload .apply-btn:hover {
  background: royalblue;
 }
-
 #settings .datapack-upload .apply-btn:active {
  background: rgb(35, 75, 195);
 }
-
 *[dir="rtl"] #settings .datapack-upload .apply-btn {
  margin-left: 0;
  margin-right: 5px;
 }
-
 #settings .datapack-upload .apply-btn:focus {
  outline: 2px solid skyblue;
 }
-
 #settings .datapack-upload .apply-btn[disabled] {
  background: silver;
+}
+
+body.theme-dark #settings .datapack-upload .apply-btn {
+ background: slateblue;
+}
+body.theme-dark #settings .datapack-upload .apply-btn:hover {
+ background: darkslateblue;
+}
+body.theme-dark #settings .datapack-upload .apply-btn:active {
+ background: rgb(42, 31, 109);
+}
+body.theme-dark #settings .datapack-upload .apply-btn:focus {
+ outline: 2px solid deepskyblue;
+}
+body.theme-dark #settings .datapack-upload .apply-btn[disabled] {
+ background: grey;
 }
 
 #settings .datapack-reset-btn {
@@ -481,24 +543,41 @@ body.theme-dark .win h2.has-close-btn .close:active {
  background: white;
  color: darkblue;
 }
-
 #settings .datapack-reset-btn:hover {
  background: rgb(230, 230, 230);
 }
-
 #settings .datapack-reset-btn:active {
  background: rgb(200, 200, 200);
  border: 1px solid grey;
 }
-
 #settings .datapack-reset-btn:focus {
  outline: 2px solid skyblue;
 }
-
 #settings .datapack-reset-btn[disabled] {
  background: rgb(240, 240, 240);
  color: grey;
  border: 1px solid lightgrey;
+}
+
+body.theme-dark #settings .datapack-reset-btn {
+ border: 1px solid rgb(100, 100, 100);
+ background: rgb(50, 50, 50);
+ color: lightskyblue;
+}
+body.theme-dark #settings .datapack-reset-btn:hover {
+ background: rgb(75, 75, 75);
+}
+body.theme-dark #settings .datapack-reset-btn:active {
+ background: rgb(40, 40, 40);
+ border: 1px solid silver;
+}
+body.theme-dark #settings .datapack-reset-btn:focus {
+ outline: 2px solid deepskyblue;
+}
+body.theme-dark #settings .datapack-reset-btn[disabled] {
+ background: rgb(75, 75, 75);
+ color: grey;
+ border: 1px solid rgb(100, 100, 100);
 }
 
 .nojs {
@@ -609,6 +688,59 @@ body.theme-dark .win h2.has-close-btn .close:active {
   background: rgb(65, 50, 30);
   box-shadow: 0 0 10px black;
  }
+ body.theme-followsys #settings .datapack-upload .file-inp::file-selector-button {
+  border: 1px solid rgb(100, 100, 100);
+  background: rgb(50, 50, 50);
+  color: white;
+ }
+ body.theme-followsys #settings .datapack-upload .file-inp::file-selector-button:hover {
+  background: rgb(70, 70, 70);
+ }
+ body.theme-followsys #settings .datapack-upload .file-inp::file-selector-button:active {
+  background: rgb(40, 40, 40);
+  border: 1px solid silver;
+ }
+ body.theme-followsys #settings .datapack-upload .file-inp::file-selector-button:focus {
+  outline: 1px dashed deepskyblue;
+ }
+ body.theme-followsys #settings .datapack-upload .apply-btn {
+  background: slateblue;
+ }
+ body.theme-followsys #settings .datapack-upload .apply-btn:hover {
+  background: darkslateblue;
+ }
+ body.theme-followsys #settings .datapack-upload .apply-btn:active {
+  background: rgb(42, 31, 109);
+ }
+ body.theme-followsys #settings .datapack-upload .apply-btn:focus {
+  outline: 2px solid deepskyblue;
+ }
+ body.theme-followsys #settings .datapack-upload .apply-btn[disabled] {
+  background: grey;
+ }
+ body.theme-followsys #settings .datapack-reset-btn {
+  border: 1px solid rgb(100, 100, 100);
+  background: rgb(50, 50, 50);
+  color: lightskyblue;
+ }
+ body.theme-followsys #settings .datapack-reset-btn:hover {
+  background: rgb(75, 75, 75);
+ }
+ body.theme-followsys #settings .datapack-reset-btn:active {
+  background: rgb(40, 40, 40);
+  border: 1px solid silver;
+ }
+ body.theme-followsys #settings .datapack-reset-btn:focus {
+  outline: 2px solid deepskyblue;
+ }
+ body.theme-followsys #settings .datapack-reset-btn[disabled] {
+  background: rgb(75, 75, 75);
+  color: grey;
+  border: 1px solid rgb(100, 100, 100);
+ }
+ body.theme-followsys .formula .name {
+  background: royalblue;
+ }
 }
 
 @media (min-width: 400px) {
@@ -636,22 +768,19 @@ body.theme-dark .win h2.has-close-btn .close:active {
    <label><input type="radio" onchange="changeTheme()" name="settings-theme" /> Тёмная</label>
    <hr noshade color="silver" />
    <h3>О программе</h3>
-   <p>SimpleConverter 1.4 <a href="javascript:showVersionChanges()">[список изменений]</a></p>
-   <p><i>Дата выпуска версии:</i> <span style="color: red;">пятница, 13-е</span> фев 2026 (UTC+03:00)</p>
+   <p>SimpleConverter 1.5 <a href="javascript:showVersionChanges()">[список изменений]</a></p>
+   <p><i>Дата выпуска версии:</i> 16 фев 2026 (UTC+03:00)</p>
    <p><a href="https://www.github.com/App327/SimpleConverter" target="_blank" class="external">GitHub</a></p>
    <p>© App327, 2025–2026</p>
   </div>
   <div id="changes" class="win" style="display: none;">
-   <h2 class="has-close-btn"><span class="text">Список изменений: v1.4</span> <button class="close" onclick="closeVersionChanges()">×</button></h2>
-   <p>Что нового в SimpleConverter версии <code>1.4</code> (изменения перечислены в порядке их реализации):</p>
+   <h2 class="has-close-btn"><span class="text">Список изменений: v1.5</span> <button class="close" onclick="closeVersionChanges()">×</button></h2>
+   <p>Что нового в SimpleConverter версии <code>1.5</code> (изменения перечислены в порядке их реализации):</p>
    <ul>
-    <li>Теперь ссылки на внешние сайты будут открываться в новой вкладке. Открываемые в новой вкладке ссылки имеют специальное обозначение в виде стрелки, выходящей из квадратика.</li>
-    <li>Теперь при ширине окна браузера ≥400 пкс, окна интерфейса SimpleConverter отображаются не во всю ширину, а в ширину 350 пкс.</li>
-    <li>Добавлены анимации открытия окон интерфейса SimpleConverter.</li>
-    <li>Добавлено предупреждение об отключённом JavaScript.</li>
-    <li>Теперь пустое или нечисловое значение в поле ввода исходного значения будет расцениваться как <b>0</b>.</li>
-    <li>Пополнение конвертера «Масса»: добавлена новая единица измерения — <i>миллиграммы</i> (<i>мг</i>).</li>
-    <li>Небольшие незначительные технические изменения.</li>
+    <li>Улучшена тёмная тема: теперь тёмными становятся кнопки в настройках в разделе «Загрузка пакета данных».</li>
+    <li>В нижней части конвертера теперь отображается формула, по которой выполняется конвертация.</li>
+    <li>Добавлена новая единица измерения в конвертер «Длина» — <i>миллиметры</i> (<i>мм</i>).</li>
+    <li>Незначительные технические изменения.</li>
    </ul>
   </div>
   <select id="conv-type" onchange="changeConverter()"></select>
@@ -662,24 +791,92 @@ body.theme-dark .win h2.has-close-btn .close:active {
 let t = document.getElementById('conv-type');
 let c = document.getElementById('converter');
 
+let convJSON = `{ // в процессе разработки
+  "format": 1,
+  "data": {
+    "1": {
+      "name": "длина",
+      "units": ["мм", "см", "дм", "м", "км"],
+      "units_full": ["миллиметры", "сантиметры", "дециметры", "метры", "километры"],
+      "formulas": {
+        "мм-см": '$ / 10',
+        "мм-дм": '$ / 100',
+        "мм-м": '$ / 1_000',
+        "мм-км": '$ / 1_000_000',
+        "см-мм": '$ * 10',
+        "см-дм": '$ / 10',
+        "см-м": '$ / 100',
+        "см-км": '$ / 100_000',
+        "дм-мм": '$ * 100',
+        "дм-см": '$ * 10',
+        "дм-м": '$ / 10',
+        "дм-км": '$ / 10_000',
+        "м-мм": '$ * 1_000',
+        "м-см": '$ * 100',
+        "м-дм": '$ * 10',
+        "м-км": '$ / 1_000',
+        "км-мм": '$ * 1_000_000',
+        "км-см": '$ * 100_000',
+        "км-дм": '$ * 10_000',
+        "км-м": '$ * 1_000',
+      }
+   },
+   2: {
+     'name': 'площадь',
+     'units': ['см²', 'м²', 'км²'],
+     'units_full': ['квадратные сантиметры', 'квадратные метры', 'квадратные километры'],
+     'formulas': {
+       'см²-м²': '$ / 10_000',
+       'м²-см²': '$ * 10_000',
+       'см²-км²': '$ / 10_000_000_000',
+       'м²-км²': '$ / 1_000_000',
+       'км²-м²': '$ * 1_000_000',
+       'км²-см²': '$ * 10_000_000_000'
+    }
+  },
+ 3: {
+  'name': 'масса',
+  'units': ['мг', 'г', 'кг'],
+  'units_full': ['миллиграммы', 'граммы', 'килограммы'],
+  'formulas': {
+   'мг-г': '$ / 1_000',
+   'мг-кг': '$ / 1_000_000',
+   'г-мг': '$ * 1_000',
+   'г-кг': '$ / 1_000',
+   'кг-мг': '$ * 1_000_000',
+   'кг-г': '$ * 1_000'
+  }
+ }
+    }
+  }
+}`;
+
 let conv = {
  1: {
   'name': 'длина',
-  'units': ['см', 'дм', 'м', 'км'],
-  'units_full': ['сантиметры', 'дециметры', 'метры', 'километры'],
+  'units': ['мм', 'см', 'дм', 'м', 'км'],
+  'units_full': ['миллиметры', 'сантиметры', 'дециметры', 'метры', 'километры'],
   'formulas': {
-   'дм-см': '$ * 10',
-   'дм-м': '$ / 10',
-   'дм-км': '$ / 10_000',
+   'мм-см': '$ / 10',
+   'мм-дм': '$ / 100',
+   'мм-м': '$ / 1_000',
+   'мм-км': '$ / 1_000_000',
+   'см-мм': '$ * 10',
    'см-дм': '$ / 10',
    'см-м': '$ / 100',
    'см-км': '$ / 100_000',
-   'м-дм': '$ * 10',
+   'дм-мм': '$ * 100',
+   'дм-см': '$ * 10',
+   'дм-м': '$ / 10',
+   'дм-км': '$ / 10_000',
+   'м-мм': '$ * 1_000',
    'м-см': '$ * 100',
+   'м-дм': '$ * 10',
    'м-км': '$ / 1_000',
+   'км-мм': '$ * 1_000_000',
+   'км-см': '$ * 100_000',
    'км-дм': '$ * 10_000',
    'км-м': '$ * 1_000',
-   'км-см': '$ * 100_000'
   }
  },
  2: {
@@ -752,7 +949,7 @@ function changeConverter() {
   }
   html += '<option value="' + i + '"' + s + '>' + upperCaseFirst(ct.units_full[i]) + ' (' + ct.units[i] + ')</option>';
  }
- html += '</select> <div class="value"><p class="v" id="cc-to-vt">0</p> <p class="u" id="cc-to-ut">' + ct.units[curTo] + '</p></div></div>';
+ html += '</select> <div class="value"><p class="v" id="cc-to-vt">0</p> <p class="u" id="cc-to-ut">' + ct.units[curTo] + '</p></div></div> <div class="formula"><p class="name">Формула</p><p class="text" id="conv-formula-text">???</p></div>';
  c.innerHTML = html;
  convert();
 }
@@ -794,11 +991,14 @@ function convert() {
  let tou = document.getElementById('cc-to-u');
  let f = conv[t.value].units[fromu.value];
  let tt = conv[t.value].units[tou.value];
+ let frm = document.getElementById('conv-formula-text');
  let v = from.value;
  if (v === '' || isNaN(v)) {
   v = 0;
  }
  let formula = conv[t.value].formulas[f + '-' + tt];
+ let frml = formula.replaceAll('*', '×').replaceAll('/', '÷').replaceAll('_', ' ').replaceAll('$', '<i>Исходное значение</i>');
+ frm.innerHTML = frml;
  let task = formula.replaceAll('$', v);
  let result = eval(task);
  to.innerText = result;
