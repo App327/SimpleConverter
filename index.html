@@ -768,19 +768,17 @@ body.theme-dark #settings .datapack-reset-btn[disabled] {
    <label><input type="radio" onchange="changeTheme()" name="settings-theme" /> Тёмная</label>
    <hr noshade color="silver" />
    <h3>О программе</h3>
-   <p>SimpleConverter 1.5 <a href="javascript:showVersionChanges()">[список изменений]</a></p>
-   <p><i>Дата выпуска версии:</i> 16 фев 2026 (UTC+03:00)</p>
+   <p>SimpleConverter 1.6 <a href="javascript:showVersionChanges()">[список изменений]</a></p>
+   <p><i>Дата выпуска версии:</i> 22 фев 2026 (UTC+03:00)</p>
    <p><a href="https://www.github.com/App327/SimpleConverter" target="_blank" class="external">GitHub</a></p>
    <p>© App327, 2025–2026</p>
   </div>
   <div id="changes" class="win" style="display: none;">
-   <h2 class="has-close-btn"><span class="text">Список изменений: v1.5</span> <button class="close" onclick="closeVersionChanges()">×</button></h2>
-   <p>Что нового в SimpleConverter версии <code>1.5</code> (изменения перечислены в порядке их реализации):</p>
+   <h2 class="has-close-btn"><span class="text">Список изменений: v1.6</span> <button class="close" onclick="closeVersionChanges()">×</button></h2>
+   <p style="border: 2px solid gold; background: rgba(230, 240, 220, 0.5); padding: 10px; width: calc(100% - 24px); margin-bottom: 20px;">Разработка ветки <code>1.x</code> подходит к концу. Все последующие обновления в этой ветке будут включать в себя только технические изменения. После того, как все технические изменения будут сделаны, начнётся разработка ветки <code>2.x</code>, в которой будет новая версия пакетов данных и другие полезные нововведения и изменения.</p>
+   <p>Что нового в SimpleConverter версии <code>1.6</code> (изменения перечислены в порядке их реализации):</p>
    <ul>
-    <li>Улучшена тёмная тема: теперь тёмными становятся кнопки в настройках в разделе «Загрузка пакета данных».</li>
-    <li>В нижней части конвертера теперь отображается формула, по которой выполняется конвертация.</li>
-    <li>Добавлена новая единица измерения в конвертер «Длина» — <i>миллиметры</i> (<i>мм</i>).</li>
-    <li>Незначительные технические изменения.</li>
+    <li>Обновлена система загрузки JSON-пакетов данных.</li>
    </ul>
   </div>
   <select id="conv-type" onchange="changeConverter()"></select>
@@ -791,7 +789,7 @@ body.theme-dark #settings .datapack-reset-btn[disabled] {
 let t = document.getElementById('conv-type');
 let c = document.getElementById('converter');
 
-let convJSON = `{ // в процессе разработки
+let convJSON = `{
   "format": 1,
   "data": {
     "1": {
@@ -799,118 +797,85 @@ let convJSON = `{ // в процессе разработки
       "units": ["мм", "см", "дм", "м", "км"],
       "units_full": ["миллиметры", "сантиметры", "дециметры", "метры", "километры"],
       "formulas": {
-        "мм-см": '$ / 10',
-        "мм-дм": '$ / 100',
-        "мм-м": '$ / 1_000',
-        "мм-км": '$ / 1_000_000',
-        "см-мм": '$ * 10',
-        "см-дм": '$ / 10',
-        "см-м": '$ / 100',
-        "см-км": '$ / 100_000',
-        "дм-мм": '$ * 100',
-        "дм-см": '$ * 10',
-        "дм-м": '$ / 10',
-        "дм-км": '$ / 10_000',
-        "м-мм": '$ * 1_000',
-        "м-см": '$ * 100',
-        "м-дм": '$ * 10',
-        "м-км": '$ / 1_000',
-        "км-мм": '$ * 1_000_000',
-        "км-см": '$ * 100_000',
-        "км-дм": '$ * 10_000',
-        "км-м": '$ * 1_000',
+        "мм-см": "$ / 10",
+        "мм-дм": "$ / 100",
+        "мм-м": "$ / 1_000",
+        "мм-км": "$ / 1_000_000",
+        "см-мм": "$ * 10",
+        "см-дм": "$ / 10",
+        "см-м": "$ / 100",
+        "см-км": "$ / 100_000",
+        "дм-мм": "$ * 100",
+        "дм-см": "$ * 10",
+        "дм-м": "$ / 10",
+        "дм-км": "$ / 10_000",
+        "м-мм": "$ * 1_000",
+        "м-см": "$ * 100",
+        "м-дм": "$ * 10",
+        "м-км": "$ / 1_000",
+        "км-мм": "$ * 1_000_000",
+        "км-см": "$ * 100_000",
+        "км-дм": "$ * 10_000",
+        "км-м": "$ * 1_000"
       }
    },
-   2: {
-     'name': 'площадь',
-     'units': ['см²', 'м²', 'км²'],
-     'units_full': ['квадратные сантиметры', 'квадратные метры', 'квадратные километры'],
-     'formulas': {
-       'см²-м²': '$ / 10_000',
-       'м²-см²': '$ * 10_000',
-       'см²-км²': '$ / 10_000_000_000',
-       'м²-км²': '$ / 1_000_000',
-       'км²-м²': '$ * 1_000_000',
-       'км²-см²': '$ * 10_000_000_000'
+   "2": {
+     "name": "площадь",
+     "units": ["см²", "м²", "км²"],
+     "units_full": ["квадратные сантиметры", "квадратные метры", "квадратные километры"],
+     "formulas": {
+       "см²-м²": "$ / 10_000",
+       "м²-см²": "$ * 10_000",
+       "см²-км²": "$ / 10_000_000_000",
+       "м²-км²": "$ / 1_000_000",
+       "км²-м²": "$ * 1_000_000",
+       "км²-см²": "$ * 10_000_000_000"
     }
   },
- 3: {
-  'name': 'масса',
-  'units': ['мг', 'г', 'кг'],
-  'units_full': ['миллиграммы', 'граммы', 'килограммы'],
-  'formulas': {
-   'мг-г': '$ / 1_000',
-   'мг-кг': '$ / 1_000_000',
-   'г-мг': '$ * 1_000',
-   'г-кг': '$ / 1_000',
-   'кг-мг': '$ * 1_000_000',
-   'кг-г': '$ * 1_000'
+  "3": {
+   "name": "масса",
+   "units": ["мг", "г", "кг"],
+   "units_full": ["миллиграммы", "граммы", "килограммы"],
+   "formulas": {
+    "мг-г": "$ / 1_000",
+    "мг-кг": "$ / 1_000_000",
+    "г-мг": "$ * 1_000",
+    "г-кг": "$ / 1_000",
+    "кг-мг": "$ * 1_000_000",
+    "кг-г": "$ * 1_000"
+   }
   }
  }
-    }
-  }
 }`;
 
-let conv = {
- 1: {
-  'name': 'длина',
-  'units': ['мм', 'см', 'дм', 'м', 'км'],
-  'units_full': ['миллиметры', 'сантиметры', 'дециметры', 'метры', 'километры'],
-  'formulas': {
-   'мм-см': '$ / 10',
-   'мм-дм': '$ / 100',
-   'мм-м': '$ / 1_000',
-   'мм-км': '$ / 1_000_000',
-   'см-мм': '$ * 10',
-   'см-дм': '$ / 10',
-   'см-м': '$ / 100',
-   'см-км': '$ / 100_000',
-   'дм-мм': '$ * 100',
-   'дм-см': '$ * 10',
-   'дм-м': '$ / 10',
-   'дм-км': '$ / 10_000',
-   'м-мм': '$ * 1_000',
-   'м-см': '$ * 100',
-   'м-дм': '$ * 10',
-   'м-км': '$ / 1_000',
-   'км-мм': '$ * 1_000_000',
-   'км-см': '$ * 100_000',
-   'км-дм': '$ * 10_000',
-   'км-м': '$ * 1_000',
-  }
- },
- 2: {
-  'name': 'площадь',
-  'units': ['см²', 'м²', 'км²'],
-  'units_full': ['квадратные сантиметры', 'квадратные метры', 'квадратные километры'],
-  'formulas': {
-   'см²-м²': '$ / 10_000',
-   'м²-см²': '$ * 10_000',
-   'см²-км²': '$ / 10_000_000_000',
-   'м²-км²': '$ / 1_000_000',
-   'км²-м²': '$ * 1_000_000',
-   'км²-см²': '$ * 10_000_000_000'
-  }
- },
- 3: {
-  'name': 'масса',
-  'units': ['мг', 'г', 'кг'],
-  'units_full': ['миллиграммы', 'граммы', 'килограммы'],
-  'formulas': {
-   'мг-г': '$ / 1_000',
-   'мг-кг': '$ / 1_000_000',
-   'г-мг': '$ * 1_000',
-   'г-кг': '$ / 1_000',
-   'кг-мг': '$ * 1_000_000',
-   'кг-г': '$ * 1_000'
-  }
- }
-};
+let convFormat = 1;
+let conv = parseConvData(convJSON);
 
 let defaultConvData = conv;
 
 let curFrom = 0;
 let curTo = 1;
+
+function parseConvData(json) {
+ let j;
+ try {
+  j = JSON.parse(json);
+ } catch (e) {
+  alert('Не удалось обработать JSON с пакетом данных.\n\n' + e.stack);
+  return false;
+ }
+ if (j.format === 1) {
+  if (!j.data) {
+   alert('JSON-пакет данных не имеет поля «data».');
+   return false;
+  }
+  convFormat = j.format;
+  return j.data;
+ } else {
+  alert('Неизвестный формат JSON-пакета данных: ' + j.format);
+  return false;
+ }
+}
 
 function updateTypes() {
  let opt = '';
@@ -924,8 +889,13 @@ function updateTypes() {
 }
 
 function changeConverter() {
- curFrom = 0;
- curTo = 1;
+ if (convFormat === 1) {
+  curFrom = 0;
+  curTo = 1;
+ } else {
+  curFrom = 0;
+  curTo = 1;
+ }
  let ct = conv[t.value];
  if (!ct) {
   c.innerHTML = '<p>Конвертер недоступен. Код ошибки: <code>E1</code></p>';
@@ -996,11 +966,16 @@ function convert() {
  if (v === '' || isNaN(v)) {
   v = 0;
  }
- let formula = conv[t.value].formulas[f + '-' + tt];
+ let formula = '$';
+ if (convJSON === 1) {
+  formula = conv[t.value].formulas[f + '-' + tt];
+ } else {
+  formula = conv[t.value].formulas[f + '-' + tt];
+ }
  let frml = formula.replaceAll('*', '×').replaceAll('/', '÷').replaceAll('_', ' ').replaceAll('$', '<i>Исходное значение</i>');
- frm.innerHTML = frml;
  let task = formula.replaceAll('$', v);
  let result = eval(task);
+ frm.innerHTML = frml;
  to.innerText = result;
 }
 
@@ -1041,7 +1016,7 @@ function loadCustomConvertData() {
  let inp = document.getElementById('settings-custom-conv-data-inp');
  let f = inp.files[0];
  if (!f) {
-  alert('Загруженный JSON-файл отсутствует!');
+  alert('Нет загруженного JSON-файла!');
   return false;
  }
  let rdr = new FileReader();
@@ -1052,24 +1027,8 @@ function loadCustomConvertData() {
  }
  rdr.onload = function() {
   let res = rdr.result;
-  let j;
-  try {
-   j = JSON.parse(res);
-  } catch (e) {
-   alert('Не удалось обработать JSON.\n\n' + e.message);
-   return false;
-  }
-  if (!j['data']) {
-   alert('В JSON отсутствует поле «data».');
-   return false;
-  }
-  let d = j.data;
-  if (j.format === 1) {
-   conv = j.data;
-  } else {
-   alert('Неподдерживаемый формат JSON-пакета: ' + j.format);
-   return false;
-  }
+  let j = parseConvData(res);
+  conv = j;
   inp.value = null;
   document.getElementById('settings-custom-conv-data-btn').disabled = true;
   document.getElementById('settings-reset-conv-data-btn').disabled = false;
