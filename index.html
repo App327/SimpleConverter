@@ -626,19 +626,18 @@ body.theme-dark #settings .datapack-reset-btn[disabled] {
    <label><input type="radio" onchange="changeTheme()" name="settings-theme" /> Тёмная</label>
    <hr noshade color="silver" />
    <h3>О программе</h3>
-   <p>SimpleConverter 1.7 <a href="javascript:showVersionChanges()">[список изменений]</a></p>
-   <p><i>Дата выпуска версии:</i> 17 мар 2026 (UTC+03:00)</p>
-   <p><a href="https://www.github.com/App327/SimpleConverter" target="_blank" class="external">GitHub</a></p>
+   <p>SimpleConverter 1.8 <a href="javascript:showVersionChanges()">[список изменений]</a></p>
+   <p><i>Дата выпуска версии:</i> 24 мар 2026 (UTC+03:00)</p>
+   <p><a href="https://www.github.com/App327/SimpleConverter" target="_blank" class="external">GitHub</a> • <a href="https://github.com/App327/SimpleConverter/issues/new?template=отчёт-об-ошибке--bug-report-.md" target="_blank" class="external">Сообщить об ошибке</a></p>
    <p>© App327, 2025–2026</p>
   </div>
   <div id="changes" class="win" style="display: none;">
-   <h2 class="has-close-btn"><span class="text">Список изменений: v1.7</span> <button class="close" onclick="closeVersionChanges()" aria-label="Закрыть окно">×</button></h2>
+   <h2 class="has-close-btn"><span class="text">Список изменений: v1.8</span> <button class="close" onclick="closeVersionChanges()" aria-label="Закрыть окно">×</button></h2>
    <p style="border: 2px solid gold; background: rgba(230, 240, 220, 0.5); padding: 10px; width: calc(100% - 24px); margin-bottom: 20px;">Разработка ветки <code>1.x</code> подходит к концу. Все последующие обновления в этой ветке будут включать в себя только технические изменения. После того, как все технические изменения будут сделаны, начнётся разработка ветки <code>2.x</code>, в которой будет новая версия пакетов данных и другие полезные нововведения и изменения.</p>
-   <p>Что нового в SimpleConverter версии <code>1.7</code> (изменения перечислены в порядке их реализации):</p>
+   <p>Что нового в SimpleConverter версии <code>1.8</code> (изменения перечислены в порядке их реализации):</p>
    <ul>
-    <li>Обновлена система переключения тем (светлая/тёмная). Теперь тема оформления на основе настроек системы применяется с помощью JavaScript, что убирает повторы в CSS. Обратите внимание, что новая система может иметь ошибки, которые будут исправлены в будущих версиях SimpleConverter.</li>
-    <li>Добавлены описания (HTML-атрибут <code>aria-label</code>) некоторых кнопок. Эти описания используются, например, программами чтения с экрана для озвучивания. В будущих версиях SimpleConverter поддержка спец. возможностей будет расширена.</li>
-    <li>Исправлена опечатка в CSS: <code>b<u>a<b>f</b>c</u>kground</code> → <code>b<u>ac</u>kground</code> (в строке <i>68</i> (в предыдущей (<code>1.6</code>) версии) / <i>69</i> (в этой версии (<code>1.7</code>)) HTML-файла SimpleConverter).</li>
+    <li>В настройки добавлена ссылка для отправки отчёта об ошибке на GitHub.</li>
+    <li>Теперь в названии окна/вкладки (тег <code>&lt;title&gt;</code>) пишется название текущего конвертера.</li>
    </ul>
   </div>
   <select id="conv-type" onchange="changeConverter()"></select>
@@ -759,8 +758,10 @@ function changeConverter() {
  let ct = conv[t.value];
  if (!ct) {
   c.innerHTML = '<p>Конвертер недоступен. Код ошибки: <code>E1</code></p>';
+  document.getElementsByTagName('title')[0].innerText = 'SimpleConverter';
   return false;
  }
+ document.getElementsByTagName('title')[0].innerText = 'SimpleConverter: ' + ct.name;
  let html = '<h3>Конвертер: ' + ct.name + '</h3>';
  html += '<div class="from-to from"><select id="cc-from-u" onclick="changeFromUnit(true)" class="unit">';
  for (let i = 0; i < ct.units_full.length; i++) {
