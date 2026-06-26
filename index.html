@@ -5,9 +5,22 @@
   <title>SimpleConverter</title>
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <style type="text/css">
-:root {
- --settings-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAtOTYwIDk2MCA5NjAiIHdpZHRoPSIyNHB4IiBmaWxsPSIjMDAwMDAwIj48cGF0aCBkPSJtMzcwLTgwLTE2LTEyOHEtMTMtNS0yNC41LTEyVDMwNy0yMzVsLTExOSA1MEw3OC0zNzVsMTAzLTc4cS0xLTctMS0xMy41di0yN3EwLTYuNSAxLTEzLjVMNzgtNTg1bDExMC0xOTAgMTE5IDUwcTExLTggMjMtMTV0MjQtMTJsMTYtMTI4aDIyMGwxNiAxMjhxMTMgNSAyNC41IDEydDIyLjUgMTVsMTE5LTUwIDExMCAxOTAtMTAzIDc4cTEgNyAxIDEzLjV2MjdxMCA2LjUtMiAxMy41bDEwMyA3OC0xMTAgMTkwLTExOC01MHEtMTEgOC0yMyAxNXQtMjQgMTJMNTkwLTgwSDM3MFptMTEyLTI2MHE1OCAwIDk5LTQxdDQxLTk5cTAtNTgtNDEtOTl0LTk5LTQxcS01OSAwLTk5LjUgNDFUMzQyLTQ4MHEwIDU4IDQwLjUgOTl0OTkuNSA0MVoiLz48L3N2Zz4=');
- --openinnew-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAtOTYwIDk2MCA5NjAiIHdpZHRoPSIyNHB4IiBmaWxsPSIjMUU5MEZGIj48cGF0aCBkPSJNMjAwLTEyMHEtMzMgMC01Ni41LTIzLjVUMTIwLTIwMHYtNTYwcTAtMzMgMjMuNS01Ni41VDIwMC04NDBoMjgwdjgwSDIwMHY1NjBoNTYwdi0yODBoODB2MjgwcTAgMzMtMjMuNSA1Ni41VDc2MC0xMjBIMjAwWm0xODgtMjEyLTU2LTU2IDM3Mi0zNzJINTYwdi04MGgyODB2MjgwaC04MHYtMTQ0TDM4OC0zMzJaIi8+PC9zdmc+');
+/* Последнее обновление шрифта Material Symbols: 26 июн 2026 */
+
+@font-face {
+ font-family: 'Material Symbols Outlined';
+ font-display: swap;
+ font-weight: 400;
+ font-style: normal;
+ src: url('data:font/woff2;base64,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');
+}
+
+@font-face {
+ font-family: 'Material Symbols Filled';
+ font-display: swap;
+ font-weight: 400;
+ font-style: normal;
+ src: url('data:font/woff2;base64,d09GMgABAAAAAAbsAA0AAAAADSgAAAaVAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHIFWBmA/U1RBVGIAgSQRCAqMaIosCyYAATYCJAMmBCAFhS4HIBvdCsjEqHfq70myk0iyHYfLSkrslgNAgiBO7bghtktAKYNL8Nj2Q/xC1Mma2gLZb4VCFLZC1qn2Wr4CgGIYsZsxM5pIIRo7PTWhlgprJ82MyjMbQBXOlW7y+PQxIABYjEEUqLiENBF6c3lLA/Rg4GdUFf8FPJhqqjS3wK/JXF8L/QrASTYWMRjaRYLAE2ZQ7EXDAwCFFLAmMIIdtWmgIKyQ6VEPGGCAFzigfsNBFDRgwUMPD8ZubWImdY8SQGbiHHTgcDB2GsHBA95ivwkPhnaQDdAgl9GwhCYUqLzRe487JWZmJsIB4bvrjKAeAJgxKDzXPO2gHUgKmCgAPRWK+4FG+0xQCclpaftcMjEnOo4QEOvC5i5CgWqvrWshtN0WggBoMcykQJENAHX7uvaBIhyCrmWYsHKAWm6aOZIuyWCDaBSETruAUlSiGrWohxkL0YL2z9O+fu27rd/t++66qu7U04DmV6pfqxfVw+oh9aB6QN2n7lV3qzuHXx08K9AcWBmYen9XnHcSEFWFwaT6kEeRhrLIP2HqORGVSWtA3VvzOVoLpDaZ4Gdou2WoFz9hAuu1jOPH8Fo9PsVzmmcAw3kYtBWFBfWavDxdASnklVV3icZ+j9OBt9sJE5ANu9McZbvNVuTUskRHGV9NyVHkXEnJFqUsuVLedixAlJVtdmK3B8qKtP14oMJJW4/6K5K41QabzU8S5S1H/ESZU46/nCgp8vbdxL4rQJHFUy/GyKx45Nk4WZS27IBtp78oKSefj1ZWv2t3s6ucNpckH3sxgTFpF2U3MfByLPvo8/GknZQdO3Ti2ShRBW8BrlS+yu12E/u7777LrXa5XBK7z+3e2Op0wubiVrsHj+CcTqeT0xihh6HawnI4I9jsSqUSnuioc4lOwxMjeEYHTsMxhub8Vi5EwzFsGxtMla9yE2I//gDA5pRXv0uIPQAnoDEw9dmcqLA8RetkRf5gFyegm9jdbveYq1KYyN3sscfYXC7XLJcLNqfoWVIJVxzMjSxtPrGILQlhhSKJGPHMMc3xafeFygvV65+/uFD5dGPVhcqCc+VleNoe/H3wNDcQlPXmuKfhkkFZQcHfBze/097cvCErKChrA9Sn7Z/6i6OpRWOmof+R5XjbdMudmnStzsNDp61Jt9xpm36897Kh/6MtlABa629vzczU1X+bIVWMGxMrRaVHeHtHpEtRY2IrxssZ3/L1hnpkRrjROzzjyrOT52dnt2Rnzw/Nym7Jyva+xNd/myFXjGehlRHubQzPkCJZ4ySSbiEWcjBj3VTfvoBW4K8Mf+jFfRO68pKXFhQmL+lS9k0QQ+2+TSZR0cUVvEqcVxhSxo+N6hlZER9WG7fevWxZSA1fLiSHhhdo4qT8DtNyX1gGhqTe/9CcYv75eTKIXj44tldKXVaaH7+kJW/HxNxZdmPr1Pyce6Unk2YWDStlQxY/Xr1qx/u9KwuWe+/ePz5lKZduen00QlM6AjtSUlI6AjtSYL1R1vAsFZaBkunRTAQtD5ROiWBGqPhMf+KXI1eNV385cuL4L8cuGy//cuxY+pJbveuN62/1LVl2s3eDccOtHlgGNKZqv+ypMzPbZmTmTK32Mw1w0kCczXRs0fSYAXylv/yn1Kwt0EaeCD115PSsGaNrTcuEXp/Kdzt9zeNTUyOzLpa8//PxBllbqI3eMvvU4fWT5w5OH7dgeJNf/LMRT/Jqiz4uwOWypakVqYvL8DHz+FzxWmors3UzVbmD2sGsWEkVPT5XtN3rFvNymxcmF6RWpQIAQABQv3av7/2XLjWE/eZJ0Q4A+KZs0SQA+KZsXZr6q3qUfkXfB6AFBQAgAKOLJmiH+qv6K/1KCy3KWwntwDN0BI4MtwREwQLpUFhhQXznXExFEKaIbviQSoQosqSV0OGQtvEzXla6jJyeCQmiiFlIQU9KhDTK8L+QQRbOCjUYjC1xLVIsE5xEh7tjYECaxVwIKQRBSNHgNZ4RZJbuCROECmDCTE13/QxY0QQLymGGgmrUoxZ1aEHmjmQ9KjcSAnLP6kI1EtGEclShGgkwQNqMdJSjJdmE+sNGc9EJCypgNbnNyESrw4xGA6pRRQCz5GTk6FRya6UcTZAZOJq9n7aiAQJMmIJ5mIVZ7LcSvK0Fb7Pg6RIWMP2vhCIRmchEIkLPYomFdVW8MxZWLEQnqfnOwHW5aBpMmA0BibDCitrDJgWkIQ2xmDK1wWhiOG8ribv5KmCzItjGGKdMjRbkSz/JAAA=');
 }
 
 body {
@@ -19,6 +32,33 @@ body {
 body.theme-dark {
  background: rgb(30, 30, 30);
  color: white;
+}
+
+
+.mso {
+ font-family: 'Material Symbols Outlined';
+ font-weight: normal;
+ font-style: normal;
+ font-size: 24px;
+ line-height: 1;
+ letter-spacing: normal;
+ text-transform: none;
+ display: inline-block;
+ white-space: nowrap;
+ overflow: hidden;
+ word-wrap: normal;
+ direction: ltr;
+ -webkit-font-feature-settings: 'liga';
+ -webkit-font-smoothing: antialiased;
+ user-select: none;
+}
+
+.mso:hover:not(.mso-nofill-on-hover), button:hover:not(.mso-nofill-on-hover) .mso:not(.mso-nofill-on-hover) {
+ font-family: 'Material Symbols Filled';
+}
+
+.mso.active:not(.mso-nofill-on-active-state), .active .mso:not(.mso-nofill-on-active-state) {
+ font-family: 'Material Symbols Filled';
 }
 
 a {
@@ -34,12 +74,11 @@ a:active {
  color: royalblue;
 }
 
-a.external {
- padding-right: 17.5px;
- background-image: var(--openinnew-icon);
- background-repeat: no-repeat;
- background-position: right center;
- background-size: 15px;
+a[target="_blank"]::after {
+ content: 'open_in_new';
+ font-family: 'Material Symbols Outlined';
+ vertical-align: middle;
+ margin-left: 2.5px;
 }
 
 body.theme-dark a {
@@ -299,25 +338,15 @@ body.theme-dark .formula .name {
  top: 0;
  right: 0;
  padding: 0;
- background-color: white;
- background-image: var(--settings-icon);
- background-repeat: no-repeat;
- background-position: center;
- background-size: 30px;
+ background-color: transparent;
+ color: rgb(30, 30, 30);
+ font-size: 27.5px;
 }
 .settings-btn:hover {
- background: rgba(100, 100, 100, 0.2);
- background-image: var(--settings-icon);
- background-repeat: no-repeat;
- background-position: center;
- background-size: 30px;
+ background-color: rgba(100, 100, 100, 0.2);
 }
 .settings-btn:active {
- background: rgba(100, 100, 100, 0.5);
- background-image: var(--settings-icon);
- background-repeat: no-repeat;
- background-position: center;
- background-size: 30px;
+ background-color: rgba(100, 100, 100, 0.5);
 }
 .settings-btn:focus {
  outline: 2px solid dodgerblue;
@@ -325,18 +354,7 @@ body.theme-dark .formula .name {
 }
 
 body.theme-dark .settings-btn {
- background-color: rgb(150, 150, 150);
-}
-body.theme-dark .settings-btn:hover {
- background-color: rgb(170, 170, 170);
-}
-body.theme-dark .settings-btn:active {
- background-color: rgb(120, 120, 120);
-}
-
-.settings-btn.opened {
- background-image: none;
- font-size: 2.0rem;
+ color: white;
 }
 
 *[dir="rtl"] .settings-btn {
@@ -611,7 +629,7 @@ body.theme-dark #settings .datapack-reset-btn[disabled] {
  </head>
  <body class="theme-followsys">
   <noscript><div class="nojs"><p>В этом браузере отключена поддержка JavaScript. JS необходим для работы SimpleConverter. Пожалуйста, включите поддержку JavaScript в этом браузере или воспользуйтесь другим браузером/ОС.</p></div></noscript>
-  <button class="settings-btn" id="settings-btn" onclick="showSettings()" aria-label="Показать или скрыть окно настроек"></button>
+  <button class="settings-btn mso" id="settings-btn" onclick="showSettings()" aria-label="Показать или скрыть окно настроек">settings</button>
   <h1>SimpleConverter</h1>
   <div id="settings" class="win" style="display: none;">
    <h2>Настройки</h2>
@@ -626,18 +644,19 @@ body.theme-dark #settings .datapack-reset-btn[disabled] {
    <label><input type="radio" onchange="changeTheme()" name="settings-theme" /> Тёмная</label>
    <hr noshade color="silver" />
    <h3>О программе</h3>
-   <p>SimpleConverter 1.8 <a href="javascript:showVersionChanges()">[список изменений]</a></p>
-   <p><i>Дата выпуска версии:</i> 24 мар 2026 (UTC+03:00)</p>
-   <p><a href="https://www.github.com/App327/SimpleConverter" target="_blank" class="external">GitHub</a> • <a href="https://github.com/App327/SimpleConverter/issues/new?template=отчёт-об-ошибке--bug-report-.md" target="_blank" class="external">Сообщить об ошибке</a></p>
+   <p>SimpleConverter 1.9 <a href="javascript:showVersionChanges()">[список изменений]</a></p>
+   <p><i>Дата выпуска версии:</i> 26 июн 2026 (UTC+03:00)</p>
+   <p><a href="https://www.github.com/App327/SimpleConverter" target="_blank">GitHub</a> • <a href="https://github.com/App327/SimpleConverter/issues/new?template=отчёт-об-ошибке--bug-report-.md" target="_blank">Сообщить об ошибке</a></p>
    <p>© App327, 2025–2026</p>
   </div>
   <div id="changes" class="win" style="display: none;">
-   <h2 class="has-close-btn"><span class="text">Список изменений: v1.8</span> <button class="close" onclick="closeVersionChanges()" aria-label="Закрыть окно">×</button></h2>
-   <p style="border: 2px solid gold; background: rgba(230, 240, 220, 0.5); padding: 10px; width: calc(100% - 24px); margin-bottom: 20px;">Разработка ветки <code>1.x</code> подходит к концу. Все последующие обновления в этой ветке будут включать в себя только технические изменения. После того, как все технические изменения будут сделаны, начнётся разработка ветки <code>2.x</code>, в которой будет новая версия пакетов данных и другие полезные нововведения и изменения.</p>
-   <p>Что нового в SimpleConverter версии <code>1.8</code> (изменения перечислены в порядке их реализации):</p>
+   <h2 class="has-close-btn"><span class="text">Список изменений: v1.9</span> <button class="close mso" onclick="closeVersionChanges()" aria-label="Закрыть окно">close</button></h2>
+   <p style="border: 2px solid gold; background: rgba(230, 240, 220, 0.5); padding: 10px; width: calc(100% - 24px); margin-bottom: 20px;">Разработка ветки <code>1.x</code> завершилась. Это последняя версия этой ветки. Следующая версия будет уже в ветке <code>2.x</code> — <code>2.0</code>. В новой ветке будет полностью переработан интерфейс (и функциональность) SimpleConverter, поэтому релиз этой версии может задержаться.</p>
+   <p>Что нового в SimpleConverter версии <code>1.9</code> (изменения перечислены в порядке их реализации):</p>
    <ul>
-    <li>В настройки добавлена ссылка для отправки отчёта об ошибке на GitHub.</li>
-    <li>Теперь в названии окна/вкладки (тег <code>&lt;title&gt;</code>) пишется название текущего конвертера.</li>
+    <li>Теперь для значков интерфейса используется <em>шрифт</em> Material Symbols.</li>
+    <li>Обновлён текст баннера в этом окне («О программе»).</li>
+    <li>Теперь у кнопки открытия настроек (в правом верхнем углу) в тёмной теме фон не серый, а тёмный.</li>
    </ul>
   </div>
   <select id="conv-type" onchange="changeConverter()"></select>
@@ -844,16 +863,14 @@ function showSettings() {
  document.getElementById('settings').style.display = 'block';
  let btn = document.getElementById('settings-btn');
  btn.onclick = closeSettings;
- btn.classList.add('opened');
- btn.innerText = '×';
+ btn.innerText = 'close';
 }
 
 function closeSettings() {
  document.getElementById('settings').style.display = 'none';
  let btn = document.getElementById('settings-btn');
  btn.onclick = showSettings;
- btn.classList.remove('opened');
- btn.innerText = '';
+ btn.innerText = 'settings';
 }
 
 function showVersionChanges() {
